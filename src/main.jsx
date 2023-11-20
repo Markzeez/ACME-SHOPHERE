@@ -10,6 +10,9 @@ import Signup from './Page/Signup.jsx'
 import Menu from './Page/Menu.jsx'
 import Contact from './Page/Contact.jsx'
 import Login from './Page/Login.jsx'
+import { store } from './redux/index.js';
+import { Provider } from 'react-redux'
+
 
 const route = createBrowserRouter(
   createRoutesFromElements(
@@ -26,9 +29,9 @@ const route = createBrowserRouter(
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+  <Provider store={store}>
   <React.StrictMode>
     <RouterProvider router={route}/>
-   
   </React.StrictMode>,
-  
+  </Provider>
 )

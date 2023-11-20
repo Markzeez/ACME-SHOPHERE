@@ -1,20 +1,30 @@
 import React, { useState } from "react";
 import { BiShow, BiHide } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import {toast} from 'react-hot-toast'
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginRedux } from "../redux/userSlice";
 
 const Login = () => {
   const [showPassword, SetShowPassword] = useState(false);
 
   const [data, setData] = useState({
-    firstName: "",
-    lastName: "",
+    
     email: "",
     password: "",
-    confirmpassword: "",
   });
-  console.log(data);
+  const nagivate = useNavigate()
+  const userData = useSelector(state => state) 
+
+
+  const dispatch = useDispatch()
+
+
+
+
   const handleshowPassword = () => {
-    SetShowPassword((preve) => !prve);
+    SetShowPassword((preve) => !preve);
   };
 
   const handleOnChange = (e) => {
@@ -27,15 +37,39 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = data;
     if (email && password) {
-      alert("successfull");
-    } else {
-      alert("Log in not successful");
-    }
-  };
+      const fetchData = await fetch(`${import.meta.env.VITE_APP_SERVER_DOMAIN}/login`,{
+        method : "POST",
+        headers : {
+            "content-type" : "application/json"
+        },
+        body : JSON.stringify(data)
+      })
+
+      const dataRes = await fetchData.json()
+      console.log(dataRes)
+      
+      toast(dataRes.message)
+
+      if(dataRes.alert){
+        dispatch(loginRedux(data.Res))
+        setTimeout(()=> {
+          nagivate("/")
+        },1000);
+      }
+
+      console.log(userData)
+  }
+  else{
+    alert("Please Enter required fields")
+  }
+
+};
+
+
   return (
     <div className="p-3 md:p-4">
       <div className="w-full max-w-md bg-white m-auto flex flex-col p-4">
