@@ -59,16 +59,16 @@ const Header = () => {
             {showMenu && (
               <div className="absolute right-2 bg-white py-2 shadow drop-shadow-md flex flex-col ">
               {
-                process.env.VITE_APP_ADMIN_EMAIL
+                process.env.VITE_APP_ADMIN_EMAIL && <Link
+                to={"newproduct"}
+                className="whitespace-nowrap cursor-pointer px-2"
+              >
+                New Product
+              </Link>
               }
-                <Link
-                  to={"newproduct"}
-                  className="whitespace-nowrap cursor-pointer px-2"
-                >
-                  New Product
-                </Link>
+                
                 {
-                  userData.image ? <p className="cursor-pointer text-white px-2 bg-red-500 " onClick={handleLogout}>Logout</p> : <Link to={"login"} className="whitespace-nowrap cursor-pointer px-2">
+                  userData.image ? <p className="cursor-pointer text-white px-2 bg-red-500 " onClick={handleLogout}>Logout ({userData.firstName})</p> : <Link to={"login"} className="whitespace-nowrap cursor-pointer px-2">
                   Login
                 </Link>
                 }
