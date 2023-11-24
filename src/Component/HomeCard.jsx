@@ -1,16 +1,31 @@
-import React from 'react'
+import React from "react";
 
-const HomeCard = ({name,image,category,price}) => {
+const HomeCard = ({ name, image, category, price, loading, id }) => {
   return (
-    <div className='bg-white p-2 shadow-md'>
-        <div className='w-40 min-h-[150px]'>
-            <img src={image} className='h-full w-full  ' />
+    <div className="bg-white p-2 shadow-md rouned min-w-[150px]">
+      {name ? (
+        <>
+         <Link to={`/menu/${id}`} onClick={()=>window.scrollTo({top:"0",behavior:"smooth"})}>
+          <div className="w-40 min-h-[150px]">
+            <img src={image} className="h-full w-full  " />
+          </div>
+          <h3 className="font-semibold text-slate-600 text-center capitalize text-lg ">
+            {name}
+          </h3>
+          <p className="text-center text-slate-500 font-medium  ">{category}</p>
+          <p className="text-center font-bold">
+            <span className="text-blue-500 ">₦</span>
+            <span>{price}</span>
+          </p>
+          </Link>
+        </>
+      ) : (
+        <div className="flex justify-center items-center h-full  ">
+          <p>{loading}</p>
         </div>
-        <h3 className='font-semibold text-slate-600 text-center capitalize text-lg '>{name}</h3>
-        <p className='text-center text-slate-500 font-medium  '>{category}</p>
-        <p className='text-center font-bold'><span className='text-blue-500 '>₦</span><span>{price}</span></p>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default HomeCard
+export default HomeCard;

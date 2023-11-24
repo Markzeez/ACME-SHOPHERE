@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BiShow, BiHide } from "react-icons/bi";
 import { Link, Navigate } from "react-router-dom";
-import {toast} from 'react-hot-toast'
+import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRedux } from "../redux/userSlice";
@@ -10,18 +10,13 @@ const Login = () => {
   const [showPassword, SetShowPassword] = useState(false);
 
   const [data, setData] = useState({
-    
     email: "",
     password: "",
   });
-  const nagivate = useNavigate()
-  const userData = useSelector(state => state) 
+  const nagivate = useNavigate();
+  const userData = useSelector((state) => state);
 
-
-  const dispatch = useDispatch()
-
-
-
+  const dispatch = useDispatch();
 
   const handleshowPassword = () => {
     SetShowPassword((preve) => !preve);
@@ -41,34 +36,32 @@ const Login = () => {
     e.preventDefault();
     const { email, password } = data;
     if (email && password) {
-      const fetchData = await fetch(`${import.meta.env.VITE_APP_SERVER_DOMAIN}/login`,{
-        method : "POST",
-        headers : {
-            "content-type" : "application/json"
-        },
-        body : JSON.stringify(data)
-      })
+      const fetchData = await fetch(
+        `${import.meta.env.VITE_APP_SERVER_DOMAIN}login`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
-      const dataRes = await fetchData.json()
-      console.log(dataRes)
-      
-      toast(dataRes.message)
+      const dataRes = await fetchData.json();
+      console.log(dataRes);
 
-      if(dataRes.alert){
-        dispatch(loginRedux(data.Res))
-        setTimeout(()=> {
-          nagivate("/")
-        },1000);
+      toast(dataRes.message);
+
+      if (dataRes.alert) {
+        dispatch(loginRedux(data.Res));
+        setTimeout(() => {
+          nagivate("/");
+        }, 1000);
       }
-
-      console.log(userData)
-  }
-  else{
-    alert("Please Enter required fields")
-  }
-
-};
-
+    } else {
+      alert("Please Enter required fields");
+    }
+  };
 
   return (
     <div className="p-3 md:p-4">
@@ -84,7 +77,7 @@ const Login = () => {
             className="w-full"
           />
         </div>
-        <form className="w-full py-3 flex flex-col text-left">
+        <form onSubmit={handleSubmit} className="w-full py-3 flex flex-col text-left">
           <label className="" htmlFor="email">
             Email
           </label>
@@ -118,7 +111,7 @@ const Login = () => {
             </span>
           </div>
 
-          <button className=" w-fit px-3  m-auto bg-red-500 hover:bg-red-600 cursor-pointer text-white text-xl font-medium text-center py-2 rounded-full mt-4 ">
+          <button type="submit" className=" w-fit px-3  m-auto bg-red-500 hover:bg-red-600 cursor-pointer text-white text-xl font-medium text-center py-2 rounded-full mt-4 ">
             Log in
           </button>
         </form>

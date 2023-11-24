@@ -12,6 +12,7 @@ import Contact from './Page/Contact.jsx'
 import Login from './Page/Login.jsx'
 import { store } from './redux/index.js';
 import { Provider } from 'react-redux'
+import Cart from './Page/Cart.jsx'
 
 
 const route = createBrowserRouter(
@@ -19,11 +20,13 @@ const route = createBrowserRouter(
     <Route path='/' element={<App/>}>
       <Route path='/' element={<Home/>}/>
       <Route path='menu' element={<Menu/>}/>
+      <Route path='menu/:filterby' element={<Menu/>}/>
       <Route path='about' element={<About/>}/>
       <Route path='contact' element={<Contact/>}/>
       <Route path='login' element={<Login/>}/>
       <Route path='newproduct' element={<NewProduct/>}/>
       <Route path='signup' element={<Signup/>}/>
+      <Route path='cart' element={<Cart/>}/>
     </Route>
   )
 )

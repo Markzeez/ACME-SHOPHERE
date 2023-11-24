@@ -47,11 +47,12 @@ const Signup = () => {
   console.log(import.meta.env.VITE_APP_SERVER_DOMAIN);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(data)
     const { firstName, lastName, email, password, confirmpassword } = data;
     if (firstName && lastName && email && password && confirmpassword)
       if (password === confirmpassword) {
         const fetchData = await fetch(
-          `${import.meta.env.VITE_APP_SERVER_DOMAIN}/signup`,
+          `${import.meta.env.VITE_APP_SERVER_DOMAIN}signup`,
           {
             method: "POST",
             headers: {
@@ -61,7 +62,7 @@ const Signup = () => {
           }
         );
 
-        const data = await fectchData.json();
+        const dataRes = await fetchData.json();
         console.log(dataRes);
 
         // alert(dataRes.message);
@@ -83,6 +84,8 @@ const Signup = () => {
         {/* <h1 className='text-center text-2xl font-bold'>
     Sign up
 </h1> */}
+        
+        <form onSubmit={handleSubmit}  className="w-full py-3 flex flex-col">
         <div className="w-20 h-20 opacity-50 0verflown-hidden rounded-full drop-shadow-md shadow-md m-auto relative ">
           <img
             src={
@@ -105,7 +108,6 @@ const Signup = () => {
             />
           </label>
         </div>
-        <form className="w-full py-3 flex flex-col">
           <label className="text-left" htmlFor="firstName">
             First Name
           </label>
@@ -113,6 +115,7 @@ const Signup = () => {
             type={"text"}
             id="firstName"
             className="w-full mt-1 mb-2 bg-slate-200 px-2 py-1 rounded focus-within:outline-blue-300"
+            name="firstName"
 
             onChange={handleOnChange}
           />
@@ -124,7 +127,7 @@ const Signup = () => {
             type={"text"}
             id="lastName"
             className="w-full mt-1 mb-2 bg-slate-200 px-2 py-1 rounded focus-within:outline-blue-300"
-            
+            name="lastName"
             onChange={handleOnChange}
           />
 
@@ -182,7 +185,7 @@ const Signup = () => {
             </span>
           </div>
 
-          <button className=" w-fit px-2 m-auto bg-red-500 hover:bg-red-600 cursor-pointer text-white text-xl font-medium text-center py-2 rounded-full mt-4 ">
+          <button type="submit" className=" w-fit px-2 m-auto bg-red-500 hover:bg-red-600 cursor-pointer text-white text-xl font-medium text-center py-2 rounded-full mt-4 ">
             Sign up
           </button>
         </form>
