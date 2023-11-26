@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IoCloudUploadOutline } from "react-icons/io5";
-import { ImagetoBase64 } from "../Component/utility.jsx/imagetoBase64";
+import { ImagetoBase64 } from "../Component/utility/ImagetoBase64";
 import toast from "react-hot-toast";
 
 const NewProduct = () => {

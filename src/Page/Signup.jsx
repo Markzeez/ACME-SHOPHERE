@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BiShow, BiHide } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
-import { ImagetoBase64 } from "../Component/utility.jsx/imagetoBase64";
+import { ImagetoBase64 } from "../Component/utility/ImagetoBase64";
 import { toast } from "react-hot-toast";
 
 const Signup = () => {
