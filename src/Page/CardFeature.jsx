@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { addCartItem } from "../redux/productSlice";
+import { addCartItem, increaseQty } from "../redux/productSlice";
 import { useDispatch } from "react-redux";
 
 const CardFeature = ({ image, name, price, category, loading, id }) => {
@@ -29,7 +29,7 @@ const CardFeature = ({ image, name, price, category, loading, id }) => {
           </h3>
           <p className=" text-slate-500 font-medium  ">{category}</p>
           <p className=" font-bold">
-            <span className="text-black ">₦</span>
+            <span className="text-blue-500 ">₦</span>
             <span>{price}</span>
           </p>
           </Link>

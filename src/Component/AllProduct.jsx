@@ -16,6 +16,7 @@ useEffect(()=>{
 },[productData])
 
 const handleFilterProduct = (category)=>{
+  setFilterBy(category)
   const filter = productData.filter(el => el.category.toLowerCase() === category.toLowerCase())
   setDataFilter(()=>{
     return[
@@ -34,14 +35,15 @@ const loadingArrayFeature = new Array(10).fill(null);
     
     <div className="flex ga-4justify-centre overflow-scroll scrollbar-none ">
       {
-        categoryList[0] ?
+        categoryList[0] ? (
          categoryList.map(el =>{
           return(
-            <FilterProduct key={el} category={el} onClick={()=>handleFilterProduct(el)}/>
+            <FilterProduct key={el} category={el} isActive={el.toLowerCase() === filterby.toLowerCase()} onClick={()=>handleFilterProduct(el)}/>
+        
           )
         })
 
-        : (
+        ) : (
         <div className="min-h-[150px] flex justify-center items-center">
           <p>Loading...</p>
         </div>

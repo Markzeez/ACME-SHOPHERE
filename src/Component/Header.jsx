@@ -64,7 +64,7 @@ const Header = () => {
             </div>{" "}
             {showMenu && (
               <div className="absolute top-12 right-2 h-full text-black w-fit bg-white py-2 flex flex-col min-w-[120px] text-center ">
-                {userData.email === import.meta.env.VITE_APP_ADMIN_EMAIL && (
+                {userData && (
                   <Link
                     to={"newproduct"}
                     className="z-50 whitespace-nowrap cursor-pointer px-2"
