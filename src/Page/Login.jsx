@@ -94,7 +94,7 @@ const Login = () => {
             Password
           </label>
           <div>
-            <div className="flex  px-2 py-1 rounded mt-1 mb-2  focus-within:outline focus-within:outline-blue-300 "></div>
+            <div className="flex py-0 bg-slate-200 px-2  rounded mt-1 mb-2  focus-within:outline focus-within:outline-blue-300 ">
             <input
               type={showPassword ? "text" : "Password"}
               id="password"
@@ -103,12 +103,14 @@ const Login = () => {
               value={data.password}
               onChange={handleOnChange}
             />{" "}
-            <span
+            <div
               className="flex  text-xl cursor-pointer"
               onClick={handleshowPassword}
             >
               {showPassword ? <BiShow /> : <BiHide />}
-            </span>
+            </div>
+            </div>
+           
           </div>
 
           <button type="submit" className=" w-fit px-3  m-auto bg-red-500 hover:bg-red-600 cursor-pointer text-white text-xl font-medium text-center py-2 rounded-full mt-4 ">

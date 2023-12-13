@@ -1,15 +1,30 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import CartProduct from "../Component/cartProduct";
-import empty from "../assets/empty.gif"
+import emptyCartImage from "../assets/empty.gif"
 
 const Cart = () => {
   
-    const productCartItem = useSelector((state)=>state.product.cartItem)
+    const productCartItem = useSelector((state)=>state.product.cartItem);
     console.log(productCartItem);
 
-    const totalPrice = productCartItem.reduce((acc,curr)=>acc + parseInt,0)
-    const totalQty = productCartItem.reduce((acc,curr)=>acc + + parseInt(curr.qty),0) 
+    const totalPrice = productCartItem.reduce((acc, curr)=>acc + parseInt(curr.total), 0);
+    const totalQty = productCartItem.reduce((acc,curr)=>acc + parseInt(curr.qty),0);
+    
+    const handlePayment = async()=>{
+      const res = await fetch(`${import.meta.env.VITE_APP_SERVER_DOMAIN}/checkout-payment`,{
+        method : "POST",
+        headers : {
+          "content-type" : "application/json"
+        },
+        body : JSON.stringify(productCartItem)
+      })
+
+
+      const data = await res.json()
+      console.log(data)
+
+    }
   return (
     <>
     
@@ -50,13 +65,13 @@ const Cart = () => {
         <p>Total Price</p>
         <p className="ml-auto w-32 font-bold"><span className="text-blue-500 ">₦</span>{totalPrice}</p>
        </div>
-       <button className="bg-blue-500 w-full font-bold text-lg py-2 text-white">Payment</button>
+       <button className="bg-blue-500 w-full font-bold text-lg py-2 text-white" onClick={handlePayment}>Payment</button>
        </div>
       </div>
   :  
   <>
   <div className="flex w-fulljustify-center items-center flex-col">
-    <img src={empty} className="w-full max-w-sm" />
+    <img src={emptyCartImage} className="w-full max-w-sm" />
     <p className="text-slate-500 text-3xl font-bold">Empty-Cart</p>
   </div>
   </>

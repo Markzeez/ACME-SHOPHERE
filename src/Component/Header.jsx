@@ -39,7 +39,7 @@ const Header = () => {
         <div className="flex items-center gap-4 md:gap-7 ">
           <nav className="  gap-4 md:gap-6 text-base md:text-lg hidden md:flex ">
             {userData.email}
-            <Link to={""}>Home</Link>
+            <Link to={"/"}>Home</Link>
             <Link to={"menu"}>Menu</Link>
             <Link to={"about"}>About</Link>
             <Link to={"contact"}>Contact</Link>
@@ -64,7 +64,7 @@ const Header = () => {
             </div>{" "}
             {showMenu && (
               <div className="absolute top-12 right-2 h-full text-black w-fit bg-white py-2 flex flex-col min-w-[120px] text-center ">
-                {userData && (
+                {userData.email === import.meta.env.VITE_APP_ADMIN_EMAIL && (
                   <Link
                     to={"newproduct"}
                     className="z-50 whitespace-nowrap cursor-pointer px-2"
@@ -88,8 +88,8 @@ const Header = () => {
                     Login
                   </Link>
                 )}
-                <nav className=" top-10 z-30 text-base md:text-lg flex flex-col ">
-                  <Link to={""} className="px-2 py-1">
+                <nav className="top-10 z-30 bg-white text-base  md:text-lg flex flex-col ">
+                  <Link to={"/"} className="px-2 py-1">
                     Home
                   </Link>
                   <Link to={"menu"} className="px-2 py-1">

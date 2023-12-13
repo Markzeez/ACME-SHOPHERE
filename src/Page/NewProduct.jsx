@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { ImagetoBase64 } from "../Component/utility/ImagetoBase64";
 import toast from "react-hot-toast";
+import axios from "axios"
 
 const NewProduct = () => {
   const [data, setData] = useState({
@@ -35,36 +36,27 @@ const NewProduct = () => {
     e.preventDefault();
     console.log(data);
 
-    const { name, image, category, price } = data;
+    const { name, image, category, price, description } = data;
 
-    if (name && image && category && price) {
-      const fetchData = await fetch(
-        `${process.env.VITE_APP_SERVER_DOMAIN}/uploadProduct`,
-        {
-          method: "POST",
-          header: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
-
-      const fetchRes = await fetchData.json();
-
-      console.log(fetchRes);
-      toast(fetchRes.message);
-
-      setData(() => {
-        return {
-          name: "",
-          category: "",
-          image: "",
-          price: "",
-          description: "",
-        };
-      });
+    if (name && image && category && price && description) {
+      axios.post(`${import.meta.env.VITE_APP_SERVER_DOMAIN}uploadProduct`, data)
+      .then(res =>{
+        console.log(res)
+        toast(res.message);
+        setData(() => {
+          return {
+            name: "",
+            category: "",
+            image: "",
+            price: "",
+            description: "",
+          };
+        });
+      })
+      .catch(err => err)
+    
     } else {
-      toast("inter required Fields");
+      toast("enter required Fields");
     }
   };
   return (
@@ -77,6 +69,7 @@ const NewProduct = () => {
         <input
           type={"text"}
           name="name"
+          id="name"
           className="bg-slate-200 p-1 my-1"
           onChange={handleOnChange}
           value={data.name}
@@ -86,7 +79,7 @@ const NewProduct = () => {
         <select
           className="bg-slate-200 p-1 my-1"
           id="category"
-          name="catogory"
+          name="category"
           onChange={handleOnChange}
           value={data.category}
         >

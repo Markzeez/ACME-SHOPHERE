@@ -147,7 +147,7 @@ const Signup = () => {
             Password
           </label>
           <div>
-            <div className="flex  px-2 py-1 rounded mt-1 mb-2  focus-within:outline focus-within:outline-blue-300 "></div>
+            <div className="flex px-2  py-0  bg-slate-200 rounded mt-1 mb-2  focus-within:outline focus-within:outline-blue-300 ">
             <input
               type={showPassword ? "text" : "Password"}
               id="password"
@@ -162,13 +162,14 @@ const Signup = () => {
             >
               {showPassword ? <BiShow /> : <BiHide />}
             </span>
+            </div>
           </div>
 
           <label className="text-left" htmlFor="cofirmpassword">
             Confirm Password
           </label>
           <div>
-            <div className="flex  px-2 py-1 rounded mt-1 mb-2 focus-within:outline focus-within:outline-blue-300 "></div>
+             <div className="flex px-2 py-0 bg-slate-200 rounded mt-1 mb-2 focus-within:outline focus-within:outline-blue-300 ">
             <input
               type={showPassword ? "text" : "Password"}
               id="confirmpassword"
@@ -183,6 +184,8 @@ const Signup = () => {
             >
               {showPassword ? <BiShow /> : <BiHide />}
             </span>
+            </div>
+            
           </div>
 
           <button type="submit" className=" w-fit px-2 m-auto bg-red-500 hover:bg-red-600 cursor-pointer text-white text-xl font-medium text-center py-2 rounded-full mt-4 ">
