@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const AllProduct = ({heading}) => {
     const productData = useSelector((state) => state.product.productList);
-    const categoryList = [...new Set(...productData.map(el=>el.category))]
+    const categoryList = [...new Set(...productData.map(el=>el.category))];
      
     //filter data display
 const [filterby,setFilterBy] = useState("")
@@ -21,9 +21,9 @@ const handleFilterProduct = (category)=>{
   setDataFilter(()=>{
     return[
       ...filter
-    ]
-  })
-}
+    ];
+  });
+};
     
 const loadingArrayFeature = new Array(10).fill(null);
 

@@ -77,7 +77,10 @@ const Login = () => {
             className="w-full"
           />
         </div>
-        <form onSubmit={handleSubmit} className="w-full py-3 flex flex-col text-left">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full py-3 flex flex-col text-left"
+        >
           <label className="" htmlFor="email">
             Email
           </label>
@@ -95,27 +98,30 @@ const Login = () => {
           </label>
           <div>
             <div className="flex py-0 bg-slate-200 px-2  rounded mt-1 mb-2  focus-within:outline focus-within:outline-blue-300 ">
-            <input
-              type={showPassword ? "text" : "Password"}
-              id="password"
-              name="password"
-              className="w-full mt-1 mb-2 bg-slate-200 px-2 py-1 border-none outline-none "
-              value={data.password}
-              onChange={handleOnChange}
-            />{" "}
-            <div
-              className="flex  text-xl cursor-pointer"
-              onClick={handleshowPassword}
-            >
-              {showPassword ? <BiShow /> : <BiHide />}
+              <input
+                type={showPassword ? "text" : "Password"}
+                id="password"
+                name="password"
+                className="w-full mt-1 mb-2 bg-slate-200 px-2 py-1 border-none outline-none "
+                value={data.password}
+                onChange={handleOnChange}
+              />{" "}
+              <div
+                className="flex  text-xl cursor-pointer"
+                onClick={handleshowPassword}
+              >
+                {showPassword ? <BiShow /> : <BiHide />}
+              </div>
             </div>
-            </div>
-           
           </div>
-
-          <button type="submit" className=" w-fit px-3  m-auto bg-red-500 hover:bg-red-600 cursor-pointer text-white text-xl font-medium text-center py-2 rounded-full mt-4 ">
-            Log in
-          </button>
+          <Link to={"/"}>
+            <button
+              type="submit"
+              className=" w-fit px-3  m-auto bg-red-500 hover:bg-red-600 cursor-pointer text-white text-xl font-medium flex justify-center items-center text-center py-2 rounded-full mt-4 "
+            >
+              Log in
+            </button>
+          </Link>
         </form>
         <p className="text-left text-sm mt-2">
           Don't have account ?{" "}

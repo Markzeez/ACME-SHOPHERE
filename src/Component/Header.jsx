@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const userData = useSelector((state) => state.user);
-  console.log(userData);
+  // console.log(userData);
   const dispatch = useDispatch();
 
   const handleShowMenu = () => {
@@ -22,6 +22,7 @@ const Header = () => {
   };
 
  const cartItemNumber = useSelector((state)=> state.product.cartItem)
+ console.log(userData.email)
   return (
     <header className="fixed top-0 shadow-md w-full h-16 px-2 md:px-4 z-50 bg-white  ">
       {/* desktop */}
@@ -88,8 +89,8 @@ const Header = () => {
                     Login
                   </Link>
                 )}
-                <nav className="top-10 z-30 bg-white text-base  md:text-lg flex flex-col ">
-                  <Link to={"/"} className="px-2 py-1">
+                <nav className="top-10 z-30 bg-white text-base lg:hidden  md:text-lg flex flex-col ">
+                  <Link to={"/"} className="px-2 py-1 ">
                     Home
                   </Link>
                   <Link to={"menu"} className="px-2 py-1">
